@@ -1,0 +1,6 @@
+#reload countrycolors
+
+KAB = {
+	color = rgb { 138 155 116 }
+	color_ui = rgb { 255 255 255 }
+}

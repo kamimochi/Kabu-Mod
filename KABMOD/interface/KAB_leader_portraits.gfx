@@ -1,0 +1,8 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_portrait_kabu"
+		texturefile = "gfx/leaders/KAB/GFX_portrait_kabu.dds"
+	}
+
+}
