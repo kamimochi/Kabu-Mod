@@ -1,0 +1,55 @@
+KAB_test_category = {  #カテゴリー名で囲む
+
+    KAB_test_decision = {
+        icon = generic_factory
+        
+        #1回きりか、何度も実行できるか
+        fire_only_once = yes 
+        
+        #必要な政治力
+        cost = 50 
+
+        #出現条件
+        #visible = {
+        #    has_war = no　#これだと戦争してるか否かが条件
+        #}
+
+        # 実行条件
+        available = {
+            has_war_with = JAP
+        }
+
+ complete_effect = {
+    # 1. 既存の全師団を削除（正しい構文） [3]
+    every_country_division = {
+        destroy_unit = yes
+    }
+
+    # 2. テンプレートをその場で定義（エフェクトとして実行） [4]
+    division_template = {
+        name = "One Man Army"
+        regiments = {
+            infantry = { x = 0 y = 0 } # 0,0座標に歩兵1個 [5]
+        }
+    }
+
+    # 3. 首都に師団を1つだけ生成 [6]
+    # ※ division = "..." の中身は必ず1行で書くこと [6]
+    capital_scope = {
+        create_unit = {
+            division = "name = \"The One\" division_template = \"One Man Army\" start_experience_factor = 1.0 start_equipment_factor = 1.0"
+            owner = KAB
+        }
+    }
+
+    # 4. 前回の最強バフ（国民精神）を付与
+    # ※ IDが大文字小文字含め ideas ファイルと一致しているか確認 [7]
+    add_ideas = KAB_one_man_army 
+}
+
+        # AIが実行する可能性
+        ai_will_do = {
+            factor = 1
+        }
+    }
+}

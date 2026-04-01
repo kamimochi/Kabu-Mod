@@ -1,0 +1,52 @@
+ideas = {
+    country = { # 国家全体に適用される国民精神のカテゴリー
+        KAB_one_man_army = { # 国民精神のID
+            picture = generic_infantry_bonus
+            
+            allowed = {
+                tag = KAB 
+            }
+            
+            removal_cost = -1 # 手動で削除できちゃうらしい、知らない要素
+            
+            # 内容↓ここはNoteBookLMに教えてもらいました。感謝。
+            modifier = {
+   				 # --- 基本戦闘能力 (+1000%) ---
+    			 army_attack_factor = 10.0          # 陸軍攻撃力 [4]
+   				 army_defence_factor = 10.0         # 陸軍防御力 [4]
+  				 army_speed_factor = 10.0          # 師団移動速度 [4]
+   				 army_strength_factor = 10.0        # 陸軍の力（耐久力） [4]
+   			 	 breakthrough_factor = 10.0         # 突破力 [4]
+
+  				 # --- 組織率・回復力 ---
+  				 army_org_factor = 10.0            # 組織率の最大値 [4]
+   				 army_morale_factor = 10.0         # 組織率の回復速度 [4]
+   				 land_reinforce_rate = 10.0         # 増援確率 [7]
+   				 coordination_bonus = 10.0          # 調整ボーナス（集中攻撃力） [4]
+
+   				 # --- 防御・地形・気候 ---
+   				 max_dig_in_factor = 100.0           # 最大塹壕レベル [4]
+   				 dig_in_speed_factor = 10.0         # 塹壕構築速度 [4]
+   				 recon_factor = 10.0                # 偵察能力 [4]
+   				 acclimatization_cold_climate_gain_factor = 10.0 # 寒冷地適応速度 [4]
+   				 acclimatization_hot_climate_gain_factor = 10.0  # 酷暑地適応速度 [4]
+
+   				 # --- 消耗・補給 (デバフをほぼ無効化) ---
+   				 attrition = -0.99                  # 消耗（-99%） [15]
+   			 	 supply_consumption_factor = -0.99  # 補給消費量（-99%） [15]
+   				 out_of_supply_factor = -0.99       # 補給切れペナルティ（-99%） [15]
+   			 	 army_fuel_consumption_factor = -0.99 # 燃料消費（-99%） [15]
+
+   			 	 # --- 特殊能力・その他 ---
+   				 experience_loss_factor = -0.99     # 戦闘による練度喪失（-99%） [4]
+   				 cas_damage_reduction = 10.0        # 近接航空支援からのダメージ軽減 [4]
+    			 initiative_factor = 10.0           # イニシアチブ [4]
+    			 land_night_attack = 10.0           # 夜間攻撃ペナルティの相殺 [4]
+                
+                 # 新規徴兵・訓練を実質的に不可能にする
+                 training_time_army_factor = 10.0 # 訓練時間を1000%増加（完了しなくなる）
+                conscription = -1.0             # 徴兵可能人口を-100%してゼロにする
+            }
+        }
+    }
+}

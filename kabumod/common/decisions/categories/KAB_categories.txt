@@ -1,0 +1,9 @@
+KAB_test_category = {
+    icon = army_cooperation 
+    priority = 10           # 優先度表示10>1
+
+    # このカテゴリーが表示される条件（例：自国タグがKABであること）
+    allowed = {
+        tag = KAB
+    }
+}

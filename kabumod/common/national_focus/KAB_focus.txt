@@ -1,0 +1,32 @@
+focus_tree = {
+	id = kabu_focus										
+	
+	country = {												 
+		factor = 0
+		modifier = {
+			add = 10
+			tag = KAB
+		}
+	}
+	
+	default = no											 
+	#ここでは}で〆ない
+
+    
+    focus = {
+        id = KAB_focus_1 # 内部ID
+        icon = GFX_goal_generic_position_armies 
+        x = 15 # 横位置
+        y = 0 # 縦位置
+        cost = 5 
+
+        
+        completion_reward = {
+            add_political_power = 150 
+        }
+    }
+
+
+
+}
+#こっちですべてを}で〆る

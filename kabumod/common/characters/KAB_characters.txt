@@ -1,0 +1,17 @@
+characters = {
+    KAB_test_leader = {
+        name = KAB_test_leader
+        portraits = {
+            civilian = {
+                large = "gfx/leaders/KAB/portrait_kab_leader.dds"
+            }
+        }
+        country_leader = {
+            ideology = marxism #history\countries\KAB - kabu.txtの政治体制と合わせること
+            traits = { }
+            desc = "KAB_test_leader_desc"
+            expire = "1965.1.1"
+            id = -1
+        }
+    }
+}
