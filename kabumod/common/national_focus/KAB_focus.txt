@@ -1,5 +1,5 @@
 focus_tree = {
-	id = kabu_focus										
+	id = kabu_focus			#ねえねえ魔理沙							
 	
 	country = {												 
 		factor = 0
@@ -14,9 +14,9 @@ focus_tree = {
 
     
     focus = {
-        id = KAB_focus_1 # 内部ID
+        id = KAB_focus_1 
         icon = GFX_goal_generic_position_armies 
-        x = 15 # 横位置
+        x = 10 # 横位置
         y = 0 # 縦位置
         cost = 5 
 
@@ -26,7 +26,120 @@ focus_tree = {
         }
     }
 
+    #############################################
+    #第2ツリー
+	focus = {
+        id = KAB_focus_2    # 共産√？
+        prerequisite = { focus = KAB_focus_1 } #前提条件
+        mutually_exclusive = { focus = KAB_focus_2 focus = KAB_focus_4 focus = KAB_focus_5  } #相互排他
+        icon = GFX_goal_generic_production 
+        x = 7 
+        y = 1  
+        cost = 5
+        
+        completion_reward = {
+            add_tech_bonus = {
+                name = "KAB_industrial_bonus"
+                bonus = 0.1
+                uses = 1
+                category = industry
+            }
+        }
+    }
+		focus = {
+        id = KAB_focus_3    #動画ネタ1？Hoi4？
+        prerequisite = { focus = KAB_focus_1 } #前提条件
+		mutually_exclusive = { focus = KAB_focus_2 focus = KAB_focus_4 focus = KAB_focus_5  } #相互排他
+        icon = GFX_goal_generic_production 
+        x = 9 
+        y = 1  
+        cost = 5
+        
+        completion_reward = {
+            add_tech_bonus = {
+                name = "KAB_industrial_bonus"
+                bonus = 0.1
+                uses = 1
+                category = industry
+            }
+        }
+    }
+    		focus = {
+        id = KAB_focus_4    #動画ネタ2？Kabu's Challenge？
+        prerequisite = { focus = KAB_focus_1 } #前提条件
+		mutually_exclusive = { focus = KAB_focus_2 focus = KAB_focus_3 focus = KAB_focus_5  } #相互排他
+        icon = GFX_goal_generic_production 
+        x = 11 
+        y = 1  
+        cost = 5
+        
+        completion_reward = {
+            add_tech_bonus = {
+                name = "KAB_industrial_bonus"
+                bonus = 0.1
+                uses = 1
+                category = industry
+            }
+        }
+    }
+        		focus = {
+        id = KAB_focus_5    #ファシ√？
+        prerequisite = { focus = KAB_focus_1 } #前提条件
+		mutually_exclusive = { focus = KAB_focus_2 focus = KAB_focus_3 focus = KAB_focus_4  } #相互排他
+        icon = GFX_goal_generic_production 
+        x = 13 
+        y = 1  
+        cost = 5
+        
+        completion_reward = {
+            add_tech_bonus = {
+                name = "KAB_industrial_bonus"
+                bonus = 0.1
+                uses = 1
+                category = industry
+            }
+        }
+    }
+    #############################################
+    #                   動画√                   #
+    #############################################
 
 
+    #ここで時限性ディシジョンを制作、Kabu's Challengeのやった国が次々に強化されて我が国に宣戦してくる。√的にはミッテルアフリカ発狂√の雰囲気
+        focus = {
+        id = KAB_focus_kc_1    #動画√１本NF
+		available = {#変数的に使用できるので政治力x以上や戦争している場合など何でも可能
+        has_completed_focus = KAB_focus_3 # prerequisite(前提条件)と同じ動作、線が消える
+        }
+        icon = GFX_goal_generic_production 
+        x = 20 
+        y = 0 
+        cost = 5
+        completion_reward = {
+            add_tech_bonus = {
+                name = "KAB_industrial_bonus"
+                bonus = 0.1
+                uses = 1
+                category = industry
+            }
+        }
+    }
+
+
+    #######################################
+    #後々Kabu's Challengeの救済(自己バフ)ツリーにする予定
+        focus = {
+        id = KAB_focus_kc_2 
+        prerequisite = { focus = KAB_focus_kc_1 } #前提条件
+        icon = GFX_goal_generic_position_armies 
+        x = 20 # 横位置
+        y = 1 # 縦位置
+        cost = 5 
+
+        
+        completion_reward = {
+            add_political_power = 150 
+        }
+    }
 }
-#こっちですべてを}で〆る
+    #こっちですべてを}で〆る

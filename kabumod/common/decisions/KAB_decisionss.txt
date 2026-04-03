@@ -1,3 +1,5 @@
+# 沼ったのでAIに書いてもらいました、Big Love NoteBookLM <3
+
 KAB_test_category = {  #カテゴリー名で囲む
 
     KAB_test_decision = {
