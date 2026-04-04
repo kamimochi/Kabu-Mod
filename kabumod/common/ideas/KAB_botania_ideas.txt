@@ -1,0 +1,178 @@
+ideas = {
+	country = {
+		# DoF系
+		The_Fruit_of_Grisaia = {
+			allowed = {
+                tag = KAB
+            }
+			removal_cost = -1
+			modifier = {
+                no_supply_grace = 24000
+                monthly_population = 0.2
+            }
+		}
+		Eye_of_the_Flugel = {
+			allowed = {
+				tag = KAB
+			}
+			removal_cost = -1
+			modifier = {
+                army_speed_factor = 2
+                org_loss_when_moving = -0.1
+            }
+		}
+		Ring_of_Loki = {
+			allowed = {
+				tag = KAB
+			}
+			removal_cost = -1
+			modifier = {
+                production_speed_buildings_factor = 1
+            }
+		}
+		Ring_of_Odin = {
+			allowed = {
+				tag = KAB
+			}
+			removal_cost = -1
+			modifier = {
+                army_org_factor = 1
+                acclimatization_cold_climate_gain_factor = 10
+                acclimatization_hot_climate_gain_factor = 10
+            }
+		}
+		Ring_of_Thor = {
+			allowed = {
+				tag = KAB
+			}
+			removal_cost = -1
+			modifier = {
+                local_resources_factor = 0.5
+	        	min_export = -0.3
+            }
+		}
+		Key_of_the_Kings_Law = {
+			allowed = {
+				tag = KAB
+			}
+			removal_cost = -1
+			modifier = {
+				offence = 0.2
+                defence = 0.1
+                custom_modifier_tooltip = cool # 元ネタとかあったら教えてください
+			}
+		}
+		Ring_of_the_Aesir = { # Ringsを圧縮したもの。効果を上げてもいいかも？
+			allowed = {
+				tag = KAB
+			}
+			removal_cost = -1
+			modifier = {
+                local_resources_factor = 0.5
+                army_org_factor = 1
+                production_speed_buildings_factor = 1
+				min_export = -0.3
+                acclimatization_cold_climate_gain_factor = 10
+                acclimatization_hot_climate_gain_factor = 10
+            }
+		}
+
+		# マナ生産系。これがある場合に隠しイベントでマナを増やしている
+		KAB_mana_continuous_focus = { # 継続方針。持っている場合はイベントでもらえるマナが増える
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+			}
+		}
+		KAB_day_bloom = {
+			picture = generic_flexible_foreign_policy
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+			}
+		}
+		KAB_night_shade = {
+			picture = generic_flexible_foreign_policy
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+			}
+		}
+		KAB_hydro_angeas = {
+			picture = generic_flexible_foreign_policy
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+				industrial_capacity_dockyard = -0.10
+			}
+		}
+		KAB_endo_flame = {
+			picture = generic_flexible_foreign_policy
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+				offence = -0.05
+				experience_gain_army_unit_factor = -0.1
+			}
+		}
+		KAB_rosa_arcana = {
+			picture = generic_flexible_foreign_policy
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+			}
+		}
+		KAB_polily = {
+			picture = generic_flexible_foreign_policy2
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+				political_power_gain = -0.3
+			}
+		}
+		KAB_stabalsam = {
+			picture = generic_flexible_foreign_policy2
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+				stability_weekly = -0.01
+			}
+		}
+		KAB_produranta = {
+			picture = generic_flexible_foreign_policy2
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+				industrial_capacity_factory = -0.15
+			}
+		}
+		KAB_exprice = {
+			picture = generic_flexible_foreign_policy2
+			allowed = {
+				tag = KAB
+			}
+			modifier = {
+				custom_modifier_tooltip = mana_product_flower_desc
+				experience_gain_army_unit_factor = -0.5
+			}
+		}
+	}
+}

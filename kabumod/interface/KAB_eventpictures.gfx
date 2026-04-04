@@ -1,0 +1,18 @@
+spriteTypes ={
+	spriteType = {
+		name = "GFX_event_botania_1"
+		texturefile = "gfx/event_pictures/KAB_botania_1.dds"
+	}
+	spriteType = {
+		name = "GFX_event_botania_2"
+		texturefile = "gfx/event_pictures/KAB_botania_2.dds"
+	}
+	spriteType = {
+		name = "GFX_event_botania_3"
+		texturefile = "gfx/event_pictures/KAB_botania_3.dds"
+	}
+	spriteType = {
+		name = "GFX_event_asshuku_1"
+		textureFile = "gfx/event_pictures/KAB_asshuku_1.dds"
+	}
+}

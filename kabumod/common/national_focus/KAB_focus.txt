@@ -112,7 +112,7 @@ focus_tree = {
         has_completed_focus = KAB_focus_3 # prerequisite(前提条件)と同じ動作、線が消える
         }
         icon = GFX_goal_generic_production 
-        x = 20 
+        x = 17 
         y = 0 
         cost = 5
         completion_reward = {
@@ -132,7 +132,7 @@ focus_tree = {
         id = KAB_focus_kc_2 
         prerequisite = { focus = KAB_focus_kc_1 } #前提条件
         icon = GFX_goal_generic_position_armies 
-        x = 20 # 横位置
+        x = 17 # 横位置
         y = 1 # 縦位置
         cost = 5 
 
@@ -141,5 +141,55 @@ focus_tree = {
             add_political_power = 150 
         }
     }
-}
-    #こっちですべてを}で〆る
+
+	# ボタニア関連を仮置き
+	focus = {
+		id = KAB_botania
+		icon = GFX_goal_generic_neutrality_focus
+		x = 20
+		y = 0
+		cost = 1
+		select_effect = {
+			set_variable = { KAB_mana_var = 300 } # なぜ選択時の効果に？ちなみに、これをつけるとNFを中断できない
+			set_variable = { KAB_dof_var = 0 }
+		}
+		completion_reward = {
+			country_event = { id = botania.1 } # ボタニアイベント仮置き
+		}
+	}
+	focus = {
+		id = KAB_mana_production
+		icon = GFX_focus_jap_manchurian_project
+		x = 20
+		y = 1
+		cost = 1
+		prerequisite = { focus = KAB_botania }
+		completion_reward = {
+			country_event = { id = botania.2 }
+			country_event = { id = botania.101 } # 7日ごとにマナが増えるか判定する隠しイベントを呼ぶ
+		}
+	}
+	focus = {
+		id = KAB_made_with_botania
+		icon = GFX_focus_TUR_the_sun_language_theory
+		x = 20
+		y = 2
+		cost = 1
+		prerequisite = { focus = KAB_mana_production }
+		completion_reward = {
+			country_event = { id = botania.3 }
+		}
+	}
+
+	focus = {
+		id = KAB_furushichochohuka # 本来は軍需追加NFだが、圧縮用に追加
+		icon = GFX_focus_generic_industry_1
+		x = 25
+		y = 0
+		cost = 1
+		completion_reward = {
+			country_event = { id = asshuku.1 }
+		}
+	}
+
+}#こっちですべてを}で〆る

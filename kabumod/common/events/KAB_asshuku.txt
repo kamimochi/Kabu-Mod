@@ -1,0 +1,21 @@
+add_namespace = asshuku
+#country_event = {
+#	id = nf.
+#	title =
+#	picture =
+#	is_triggered_only =
+#	option = {
+#		name =
+#	}
+#}
+# NF系
+country_event = {
+	id = asshuku.1
+	title = asshuku.1.t
+	picture = GFX_event_asshuku_1 # 仮置き
+	desc = asshuku.1.d
+	is_triggered_only = yes
+	option = {
+		name = asshuku.1.a
+	}
+}

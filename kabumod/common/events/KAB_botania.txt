@@ -1,0 +1,111 @@
+add_namespace = botania
+#country_event = {
+#	id = nf.
+#	title =
+#	picture =
+#	is_triggered_only =
+#	option = {
+#		name =
+#	}
+#}
+# NF系
+country_event = {
+	id = botania.1
+	title = botania.1.t
+	picture = GFX_event_botania_1
+	desc = botania.1.d
+	is_triggered_only = yes
+	option = {
+		name = botania.1.a
+	}
+}
+country_event = {
+	id = botania.2
+	title = botania.2.t
+	picture = GFX_event_botania_2
+	desc = botania.2.d
+	is_triggered_only = yes
+	option = {
+		name = botania.2.a
+	}
+}
+country_event = {
+	id = botania.3
+	title = botania.3.t
+	picture = GFX_event_botania_3
+	desc = botania.3.d
+	is_triggered_only = yes
+	option = {
+		name = botania.3.a
+	}
+}
+
+# ボタニアのマナ生産用隠しイベント
+country_event = {
+	id = botania.101
+	title = mana_var_ck
+	is_triggered_only = yes
+	hidden = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { days = 7 id = botania.101 }
+		}
+		if = {
+			limit = { has_idea = KAB_mana_continuous_focus }
+			add_to_variable = { KAB_mana_var = 140 }
+		}
+		if = {
+			limit = { has_idea = KAB_day_bloom }
+			random_list = {
+				50 = {
+					add_to_variable = { KAB_mana_var = 30 }
+				}
+				50 = {
+					add_to_variable = { KAB_mana_var = 0 }
+				}
+			}
+		}
+		if = {
+			limit = { has_idea = KAB_night_shade }
+			random_list = {
+				50 = {
+					add_to_variable = { KAB_mana_var = 0 }
+				}
+				50 = {
+					add_to_variable = { KAB_mana_var = 30 }
+				}
+			}
+		}
+		if = {
+			limit = { has_idea = KAB_hydro_angeas }
+			add_to_variable = { KAB_mana_var = 20 }
+		}
+		if = {
+			limit = { has_idea = KAB_endo_flame }
+			add_to_variable = { KAB_mana_var = 40 }
+		}
+		if = {
+			limit = { has_idea = KAB_rosa_arcana }
+			add_to_variable = { KAB_mana_var = 30 }
+		}
+		if = {
+			limit = { has_idea = KAB_polily }
+			add_to_variable = { KAB_mana_var = 50 }
+		}
+		if = {
+			limit = { has_idea = KAB_stabalsam }
+			add_to_variable = { KAB_mana_var = 90 }
+		}
+		if = {
+			limit = { has_idea = KAB_produranta }
+			add_to_variable = { KAB_mana_var = 40 }
+		}
+		if = {
+			limit = { has_idea = KAB_exprice }
+			add_to_variable = { KAB_mana_var = 30 }
+		}
+	}
+	option = {
+		name = ok
+	}
+}

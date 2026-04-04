@@ -1,0 +1,458 @@
+KAB_test_category = {  #カテゴリー名で囲む
+
+    KAB_test_decision = {
+        icon = generic_factory
+
+        #1回きりか、何度も実行できるか
+        fire_only_once = yes
+
+        #必要な政治力
+        cost = 50
+
+        #出現条件
+        #visible = {
+        #    has_war = no　#これだと戦争してるか否かが条件
+        #}
+
+        # 実行条件
+        available = {
+            has_war_with = JAP
+        }
+
+ complete_effect = {
+    # 1. 既存の全師団を削除（正しい構文） [3]
+    every_country_division = {
+        destroy_unit = yes
+    }
+
+    # 2. テンプレートをその場で定義（エフェクトとして実行） [4]
+    division_template = {
+        name = "One Man Army"
+        regiments = {
+            infantry = { x = 0 y = 0 } # 0,0座標に歩兵1個 [5]
+        }
+    }
+
+    # 3. 首都に師団を1つだけ生成 [6]
+    # ※ division = "..." の中身は必ず1行で書くこと [6]
+    capital_scope = {
+        create_unit = {
+            division = "name = \"The One\" division_template = \"One Man Army\" start_experience_factor = 1.0 start_equipment_factor = 1.0"
+            owner = KAB
+        }
+    }
+
+    # 4. 前回の最強バフ（国民精神）を付与
+    # ※ IDが大文字小文字含め ideas ファイルと一致しているか確認 [7]
+    add_ideas = KAB_one_man_army
+}
+
+        # AIが実行する可能性
+        ai_will_do = {
+            factor = 1
+        }
+    }
+}
+
+# マナ系仮置き
+KAB_mana_decision = {
+    # ダイス
+    KAB_mana_guardian_decision = {
+        cost = 10
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = has_mana_over_100
+                check_variable = { KAB_mana_var > 99 }
+            }
+            has_manpower > 100
+            has_equipment = {
+                infantry_equipment > 9
+            }
+            NOT = { # DoFがすべて出たときに踏めないようにする。visibleではないのは、visibleにするとディシジョンのカテゴリーの順番が入れ替わってしまうため。hiddenでもいいかも?
+                AND = {
+                    has_idea = The_Fruit_of_Grisaia
+                    has_idea = Eye_of_the_Flugel
+                    OR = {
+                        AND = { # 圧縮前
+                            has_idea = Ring_of_Loki
+                            has_idea = Ring_of_Odin
+                            has_idea = Ring_of_Thor
+                        } # 圧縮後
+                        has_idea = Ring_of_the_Aesir
+                    }
+                    has_idea = Key_of_the_Kings_Law
+                }
+            }
+        }
+        complete_effect = {
+            # マナを消費
+            add_to_variable = {
+                KAB_mana_var = -100
+            }
+            # 人的を消費
+            add_manpower = -100
+            # 装備を消費
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -10
+            }
+        }
+        days_remove = 3
+        remove_effect = {
+            random_list = {
+				60 = {
+					custom_effect_tooltip = attack_will_be_succeded
+                    add_to_variable = { KAB_dof_var = 1 }
+                    add_manpower = 100
+				}
+				40 = {
+					custom_effect_tooltip = attack_will_be_failed
+
+				}
+            }
+        }
+    }
+    # dof
+    KAB_dice_of_fate_decision = {
+        cost = 0
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = has_dof
+                check_variable = { KAB_dof_var > 0 }
+            }
+            NOT = {
+                AND = {
+                    has_idea = The_Fruit_of_Grisaia
+                    has_idea = Eye_of_the_Flugel
+                    OR = {
+                        AND = { # 圧縮前
+                            has_idea = Ring_of_Loki
+                            has_idea = Ring_of_Odin
+                            has_idea = Ring_of_Thor
+                        } # 圧縮後
+                        has_idea = Ring_of_the_Aesir
+                    }
+                    has_idea = Key_of_the_Kings_Law
+                }
+            }
+        }
+        complete_effect = {
+            add_to_variable = {
+                KAB_dof_var = -1
+            }
+        }
+        days_remove = 1
+        remove_effect = {
+            random_list = { # hiddenでもいいかも?
+                1 = {
+                    modifier = { factor = 0 has_idea = The_Fruit_of_Grisaia }
+                    custom_effect_tooltip = KAB_get_Dof_The_Fruit_of_Grisaia
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_idea = The_Fruit_of_Grisaia
+                            }
+                        }
+                        add_ideas = The_Fruit_of_Grisaia
+                    }
+                }
+                1 = {
+                    modifier = { factor = 0 has_idea = Eye_of_the_Flugel }
+                    custom_effect_tooltip = KAB_get_Dof_Eye_of_the_Flugel
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_idea = Eye_of_the_Flugel
+                            }
+                        }
+                        add_ideas = Eye_of_the_Flugel
+                    }
+                }
+                1 = {
+                    modifier = { factor = 0 OR = { has_idea = Ring_of_Loki has_idea = Ring_of_the_Aesir } }
+                    custom_effect_tooltip = KAB_get_Dof_Ring_of_Loki
+                    if = {
+                        limit = {
+                            NOT = {
+                                OR = {
+                                    has_idea = Ring_of_Loki
+                                    has_idea = Ring_of_the_Aesir # Aesirは圧縮で手に入るため
+                                }
+                            }
+                        }
+                        add_ideas = Ring_of_Loki
+                    }
+                }
+                1 = {
+                    modifier = { factor = 0 OR = { has_idea = Ring_of_Odin has_idea = Ring_of_the_Aesir } }
+                    custom_effect_tooltip = KAB_get_Dof_Ring_of_Odin
+                    if = {
+                        limit = {
+                            NOT = {
+                                OR = {
+                                    has_idea = Ring_of_Odin
+                                    has_idea = Ring_of_the_Aesir
+                                }
+                            }
+                        }
+                        add_ideas = Ring_of_Odin
+                    }
+                }
+                1 = {
+                    modifier = { factor = 0 OR = { has_idea = Ring_of_Thor has_idea = Ring_of_the_Aesir } }
+                    custom_effect_tooltip = KAB_get_Dof_Ring_of_Thor
+                    if = {
+                        limit = {
+                            NOT = {
+                                OR = {
+                                    has_idea = Ring_of_Thor
+                                    has_idea = Ring_of_the_Aesir
+                                }
+                            }
+                        }
+                        add_ideas = Ring_of_Thor
+                    }
+                }
+                1 = {
+                    modifier = { factor = 0 has_idea = Key_of_the_Kings_Law }
+                    custom_effect_tooltip = KAB_get_Dof_Key_of_the_Kings_Law
+                    if = {
+                        limit = {
+                            NOT = {
+                                OR = {
+                                    has_idea = Key_of_the_Kings_Law
+                                }
+                            }
+                        }
+                        add_ideas = Key_of_the_Kings_Law
+                    }
+                }
+            }
+        }
+    }
+}
+
+KAB_mana_product_decision = {
+    KAB_research_howto = {
+        cost = 25
+        fire_only_once = yes
+        available = { always = yes }
+        visible = {
+            NOT = {
+                has_country_flag = mana_researched_howto
+            }
+        }
+        complete_effect = {
+
+        }
+        days_remove = 30
+        remove_effect = {
+            set_country_flag = mana_researched_howto
+        }
+    }
+    KAB_synthesize_day_bloom = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_day_bloom } # 元MODだとvisibleなのだけど、availableの方がよさそう
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_day_bloom days = 30 }
+        }
+    }
+    KAB_synthesize_night_shade = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_night_shade }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_night_shade days = 30 }
+        }
+    }
+    KAB_synthesize_hydro_angeas = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            any_state = { #どこかの州が沿岸であれば(hydroangeasのため)
+                is_coastal = yes
+                is_controlled_by = ROOT
+            }
+            NOT = { has_idea = KAB_hydro_angeas } # 元MODではこのディシジョン以降はこの条件がない
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_hydro_angeas days = 30 }
+        }
+    }
+    KAB_synthesize_endo_flame = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_endo_flame }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_endo_flame days = 30 }
+        }
+    }
+    KAB_synthesize_rosa_arcana = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_rosa_arcana }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_rosa_arcana days = 30 }
+        }
+    }
+    KAB_synthesize_polily = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_polily }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_polily days = 30 }
+        }
+    }
+    KAB_synthesize_stabalsam = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_stabalsam }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_stabalsam days = 30 }
+        }
+    }
+    KAB_synthesize_produranta = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_produranta }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_produranta days = 30 }
+        }
+    }
+    KAB_synthesize_exprice = {
+        cost = 10
+        fire_only_once = no
+        visible = {
+            has_country_flag = mana_researched_howto
+        }
+        available = {
+            NOT = { has_idea = KAB_exprice }
+        }
+        complete_effect = {
+            add_timed_idea = { idea = KAB_exprice days = 30 }
+        }
+    }
+}
+
+KAB_mana_to_eqipment = {
+    # 簡単な装備追加と、面倒そうな師団追加を仮設置。
+    # 元MODには、他に野砲、支援装備、戦闘機、CAS、軽戦車追加があった。
+    KAB_mana_to_infantry_equipment = {
+        cost = 0
+        fire_only_once = no
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = has_mana_over_100
+                check_variable = { KAB_mana_var > 99 }
+            }
+        }
+        complete_effect = {
+            add_to_variable = {
+                KAB_mana_var = -100
+            }
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 1500
+            }
+        }
+    }
+
+    KAB_mana_to_LightTank_divisions = {
+        cost = 0
+        fire_only_once = no
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = has_mana_over_500
+                check_variable = { KAB_mana_var > 499 }
+            }
+        }
+        complete_effect = {
+            add_to_variable = {
+                KAB_mana_var = -500
+            }
+            custom_effect_tooltip = CREATE_LT_DIV
+            hidden_effect = { # 以下コピペなので雰囲気解説
+                set_technology = { advanced_light_tank = 1 } # 発展型軽戦車の技術を追加
+                division_template = {
+                    name = "Light tank Division"
+                    priority = 2 # 装備の優先度:高
+                    regiments = {
+    					light_armor = { x = 0 y = 0 }
+    					light_armor = { x = 0 y = 1 }
+    					light_armor = { x = 0 y = 2 }
+    	       		 	light_armor = { x = 0 y = 3 }
+    					light_armor = { x = 0 y = 4 }
+
+    					motorized = { x = 1 y = 0 }
+    					motorized = { x = 1 y = 1 }
+    					motorized = { x = 1 y = 2 }
+    					motorized = { x = 1 y = 3 }
+    					motorized = { x = 1 y = 4 }
+    				}
+                }
+                random_owned_controlled_state = {
+                    prioritize = { 571 } # この州を優先して使う
+                    create_unit = {
+                        division = "name = \"1. Light tank Division\" division_template = \"Light tank Division\" start_experience_factor = 0.2" # 元ファイルだと名前指定だけれども、複数押すことを考えるとvar用意して管理なのかな...まあ動くんだけど
+                        owner = KAB
+                    }
+                }
+            }
+        }
+    }
+}
+
+KAB_asshuku = {
+    KAB_asshuku_the_rings = {
+        cost = 0
+        fire_only_once = yes
+        available = {
+            has_idea = Ring_of_Loki
+            has_idea = Ring_of_Odin
+            has_idea = Ring_of_Thor
+        }
+        complete_effect = {
+            remove_ideas = { Ring_of_Loki Ring_of_Odin Ring_of_Thor }
+            add_ideas = Ring_of_the_Aesir
+        }
+    }
+}

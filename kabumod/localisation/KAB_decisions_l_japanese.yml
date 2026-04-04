@@ -3,3 +3,7 @@
  KAB_test_category_desc:0 "すべてはあなた一人で片付けてください"
  KAB_test_decision:0 "ワンマンアーミー"
  KAB_test_decision_desc:0 "ゲームバランスを§R崩壊§!させます！"
+ KAB_mana_decision:0 "マナ"
+ KAB_mana_decision_desc:0 "既存の科学では解明されていない物質である"マナ"。この物質を我が国の発展に利用できるのではないか。\n\n現在のマナ: [?Root.KAB_mana_var|0]\nダイスオブフェイト所持数: [?Root.KAB_dof_var|0]"
+ KAB_mana_product_decision:0 "マナの生産"
+ KAB_mana_to_eqipment:0 "マナによる装備生産"
