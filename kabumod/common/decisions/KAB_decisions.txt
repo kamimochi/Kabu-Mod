@@ -456,3 +456,49 @@ KAB_asshuku = {
         }
     }
 }
+
+
+KAB_kabusChallenge_category = {
+
+    # 第1段階：イタリア戦のタイマー（宣戦はNFで実行済み）
+    KAB_war_1_ita_mission = {
+        allowed = { always = no }
+        selectable_mission = no
+        days_mission_timeout = 100 
+        available = { always = no } # タイマーを完遂させるために必要 [1]
+        
+        # 100日経過した瞬間の効果
+        timeout_effect = {
+            # 次のターゲット（ラトビア）に宣戦布告する [2]
+            declare_war_on = { target = LAT type = annex_everything }
+            # 次のミッションタイマーを始動 [1]
+            activate_mission = KAB_war_2_lat_mission 
+        }
+    }
+
+    # 第2段階：ラトビア戦のタイマー
+    KAB_war_2_lat_mission = {
+        allowed = { always = no }
+        selectable_mission = no
+        days_mission_timeout = 100
+        available = { always = no }
+
+        timeout_effect = {
+            # さらに次のターゲット（デンマーク）に宣戦布告
+            declare_war_on = { target = DEN type = annex_everything }
+            activate_mission = KAB_war_3_den_mission 
+        }
+    }
+
+    # 第3段階：デンマーク戦のタイマー
+    KAB_war_3_den_mission = {
+        allowed = { always = no }
+        selectable_mission = no
+        days_mission_timeout = 100
+        available = { always = no }
+
+        timeout_effect = {
+            # チェーン終了時の処理があればここに記述
+        }
+    }
+}

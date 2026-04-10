@@ -1,0 +1,15 @@
+ideas = {
+    country = {
+        GER_awakened_giant = { # 強化国民精神のID
+            picture = generic_intel_bonus
+            allowed = { tag = GER }
+            removal_cost = -1
+            
+            modifier = {
+                army_attack_factor = 0.5      
+                army_defence_factor = 0.5     # 最大強化の具体的な数値を知らないので暫定的に
+                industrial_capacity_factory = 0.3 
+            }
+        }
+    }
+}

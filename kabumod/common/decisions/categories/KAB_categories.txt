@@ -1,6 +1,6 @@
 KAB_test_category = {
     icon = army_cooperation
-    priority = 10           # 優先度表示10>1
+    priority = 1           # 優先度表示10>1
 
     # このカテゴリーが表示される条件（例：自国タグがKABであること）
     allowed = {
@@ -50,5 +50,17 @@ KAB_asshuku = {
 	}
 	visible = {
 		has_completed_focus = KAB_furushichochohuka # 旧MODではKAB_manaという未完のNFが条件。ひとまずここに
+	}
+}
+
+
+KAB_kabusChallenge_category = {
+    icon = generic_war
+	visible_when_empty = yes
+	allowed = {
+		original_tag = KAB
+	}
+	visible = {
+		has_completed_focus = KAB_focus_kc_2 
 	}
 }

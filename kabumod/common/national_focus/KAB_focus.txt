@@ -31,7 +31,7 @@ focus_tree = {
 	focus = {
         id = KAB_focus_2    # 共産√？
         prerequisite = { focus = KAB_focus_1 } #前提条件
-        mutually_exclusive = { focus = KAB_focus_2 focus = KAB_focus_4 focus = KAB_focus_5  } #相互排他
+        mutually_exclusive = { focus = KAB_focus_3 focus = KAB_focus_4 focus = KAB_focus_5  } #相互排他
         icon = GFX_goal_generic_production 
         x = 7 
         y = 1  
@@ -56,12 +56,7 @@ focus_tree = {
         cost = 5
         
         completion_reward = {
-            add_tech_bonus = {
-                name = "KAB_industrial_bonus"
-                bonus = 0.1
-                uses = 1
-                category = industry
-            }
+            add_political_power = 150
         }
     }
     		focus = {
@@ -100,6 +95,9 @@ focus_tree = {
             }
         }
     }
+
+
+    
     #############################################
     #                   動画√                   #
     #############################################
@@ -138,10 +136,16 @@ focus_tree = {
 
         
         completion_reward = {
-            add_political_power = 150 
+            declare_war_on = { target = ITA type = annex_everything }
+            add_political_power = 150
+            activate_mission = KAB_war_1_ita_mission
+            set_country_flag = unlock_kc_decision_flag #ディシジョン開始を開始するフラグ
         }
     }
 
+
+
+    #######################################################
 	# ボタニア関連を仮置き
 	focus = {
 		id = KAB_botania
@@ -184,7 +188,7 @@ focus_tree = {
 	focus = {
 		id = KAB_furushichochohuka # 本来は軍需追加NFだが、圧縮用に追加
 		icon = GFX_focus_generic_industry_1
-		x = 25
+		x = 22 
 		y = 0
 		cost = 1
 		completion_reward = {
